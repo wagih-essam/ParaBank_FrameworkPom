@@ -3,8 +3,7 @@ package Pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class LandingPage {
-    private final WebDriver driver;
+public class LandingPage extends BasePage {
     String url = "https://eshop.vodafone.com.eg/en/";
 
     // constructor
