@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class LandingPage extends BasePage {
-    String url = "https://eshop.vodafone.com.eg/en/";
+    String url = "https://parabank.parasoft.com/parabank/index.htm";
 
     // constructor
     public LandingPage(WebDriver driver){
@@ -23,8 +23,9 @@ public class LandingPage extends BasePage {
     private final By adminButton = By.xpath("//ul[@class='leftmenu']//a[contains(text(), 'Admin Page')]");
 
     // actions
-    public void navigateToEshop(){
+    public LandingPage navigation(){
         driver.navigate().to(url);
+        return this;
     }
 
     public void enterUserName(String username){
@@ -39,43 +40,35 @@ public class LandingPage extends BasePage {
     public void setForgotButton(){
         driver.findElement(forgotButton).click();
     }
-    public void setRegisterButton(){
+    public RegisterPage goToRegisterButton(){
         driver.findElement(registerButton).click();
+        return new RegisterPage(driver);
     }
-    public void setAboutUsButton(){
+    public AboutUsPage goToAboutUsButton(){
         driver.findElement(aboutUsButton).click();
+        return new AboutUsPage(driver);
     }
-    public void setServicesButton(){
+    public ServicesPage goToServicesButton(){
         driver.findElement(servicesButton).click();
+        return new ServicesPage(driver);
     }
-    public void setProductsButton(){
+    public ProductsPage goToProductsButton(){
         driver.findElement(productsButton).click();
+        return new ProductsPage(driver);
     }
-    public void setLocationsButton(){
+    public LocationsPage goToLocationsButton(){
         driver.findElement(locationsButton).click();
+        return new LocationsPage(driver);
     }
-    public void setAdminButton(){
+    public AdminPage goToAdminButton(){
         driver.findElement(adminButton).click();
+        return new AdminPage(driver);
+    }
+    public LandingPage backToPreviousPage(){
+        driver.navigate().back();
+        return new LandingPage(driver);
     }
 
     // navigation pages
-    public AboutUsPage aboutUsPage(){
-        return new AboutUsPage(driver);
-    }
-    public AdminPage adminPage(){
-        return new AdminPage(driver);
-    }
-    public SolutionsPage solutionsPage(){
-        return new SolutionsPage(driver);
-    }
-    public ServicesPage servicesPage(){
-        return new ServicesPage(driver);
-    }
-    public ProductsPage productsPage(){
-        return new ProductsPage(driver);
-    }
-    public LocationsPage locationsPage(){
-        return new LocationsPage(driver);
-    }
 
 }
