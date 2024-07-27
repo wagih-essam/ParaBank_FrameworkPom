@@ -1,5 +1,6 @@
 package Pages;
 
+import Pages.SubPages.AccountServices;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -77,6 +78,9 @@ public class LandingPage extends BasePage {
     public LandingPage backToPreviousPage(){
         driver.navigate().back();
         return new LandingPage(driver);
+    }
+    public AccountServices goToAccountServiecsPage(){
+        return new AccountServices(driver);
     }
 
     // navigation pages

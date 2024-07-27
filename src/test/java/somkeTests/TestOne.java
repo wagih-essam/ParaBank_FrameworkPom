@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 public class TestOne extends BaseTest {
 
-    @Test
+    @Test(priority = 2)
     public void loginFunctionality(){
         LandingPage landingPage = new LandingPage(driver);
         wait.until(d -> {
@@ -28,16 +28,39 @@ public class TestOne extends BaseTest {
         });
     }
 
-    @Test
+    @Test(priority = 1)
     public void creatNewAccount(){
         LandingPage landingPage = new LandingPage(driver);
         wait.until(d -> {
         landingPage.navigation().goToRegisterButton().setFirstNameField("test").setLastNameField("test")
                 .setAddressField("test address").setCityField("test city").setStateField("test state")
                 .setZipCodeField("123").setPhoneField("0123456789").setSsnField("ssn test")
-                .setUserNameRegisterField("usernametest3").setPassNameRegisterField("passwordtest")
+                .setUserNameRegisterField("usernametest").setPassNameRegisterField("passwordtest")
                 .setConfirmRegisterButton("passwordtest").clickRegisterButton().verifySuccessfulResgister();
         return true;
     });
     }
+
+    @Test(priority = 3)
+    public void logoutFunctionality(){
+        LandingPage landingPage = new LandingPage(driver);
+        wait.until(d -> {
+            landingPage.navigation().goToAccountServiecsPage().clickOnLogoutButton();
+            return true;
+        });
+    }
+
+    @Test(priority = 4)
+    public void openNewAccountFunctionality() {
+        LandingPage landingPage = new LandingPage(driver);
+        wait.until(d -> {
+            creatNewAccount();
+//            loginFunctionality();
+            landingPage.navigation().goToAccountServiecsPage().clickOnOpenNewAccountButton()
+                    .openAccountTypeDropdown("SAVING")
+                    .openMinimumDepositDropdown("14232")
+                    .clickOnConfirmOpenNewAccountButton().verifyOpenAccountStatus("Account Opened!");
+            return true;
+        });
+        }
 }
